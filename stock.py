@@ -3,11 +3,19 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import smtplib, ssl
+from flask import Flask
 smtp_server = "smtp.gmail.com"
 sender_email = "sairohith.guntupally1@gmail.com"
 receiver_email = "sairohith.guntupally1@gmail.com"
 password = "trashfound404"
 i=1
+
+app = Flask(__name__)
+
+
+@app.route("/")  # at the end point /
+def hello1():  # call method hello
+    print ("hello world")
 def parsePrice():
   r= requests.get('https://finance.yahoo.com/quote/BCH-USD/')
   soup = BeautifulSoup(r.text,'lxml')
