@@ -1,1 +1,1 @@
-worker:gunicorn stock:app --log-file=-
+web: python stock.py runserver 0.0.0.0:$PORT
