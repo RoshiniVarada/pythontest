@@ -19,7 +19,7 @@ def stock():
  while True:
   price=parsePrice()
   print(price)
-  if price >= 306 and i==1:
+  if price >= 280 and i==1:
     print("sell  ",i)
     i=0
     port = 587  # For starttls
@@ -31,7 +31,7 @@ def stock():
       server.ehlo()  # Can be omitted
       server.login(sender_email, password)
       server.sendmail(sender_email, receiver_email, message)
-  if price <= 294 and i==0:
+  if price <= 260 and i==0:
     print("buy  ",i)
     i=1
     port = 587  # For starttls
