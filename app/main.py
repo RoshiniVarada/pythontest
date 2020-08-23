@@ -20,7 +20,7 @@ def stock():
   time.sleep(10)
   price=parsePrice()
   print(price)
-  if price >= 285 and i==1:
+  if price >= 306 and i==1:
     print("sell  ",i)
     i=0
     port = 587  # For starttls
