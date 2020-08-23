@@ -17,6 +17,7 @@ def stock():
  password = "trashfound404"
  i=1
  while True:
+  time.sleep(10)
   price=parsePrice()
   print(price)
   if price >= 295 and i==1:
