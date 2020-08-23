@@ -4,27 +4,19 @@ from bs4 import BeautifulSoup
 import time
 import smtplib, ssl
 from flask import Flask
-smtp_server = "smtp.gmail.com"
-sender_email = "sairohith.guntupally1@gmail.com"
-receiver_email = "sairohith.guntupally1@gmail.com"
-password = "trashfound404"
-i=1
+
 
 app = Flask(__name__)
 
 
-@app.route("/")  # at the end point /
-def home_view(): 
-        return "<h1>Testing App</h1>"
-        
-def parsePrice():
-  r= requests.get('https://finance.yahoo.com/quote/BCH-USD/')
-  soup = BeautifulSoup(r.text,'lxml')
-  price=soup.find_all('div',{'class':'D(ib) Va(m) Maw(65%) Ov(h)'})[0].find('span').text
-  price=float(price)
-  return price
-
-while True:
+@app.route("/", methods=['GET'])  # at the end point /
+def stock(): 
+ smtp_server = "smtp.gmail.com"
+ sender_email = "sairohith.guntupally1@gmail.com"
+ receiver_email = "sairohith.guntupally1@gmail.com"
+ password = "trashfound404"
+ i=1
+ while True:
   time.sleep(10)
   price=parsePrice()
   print(price)
@@ -40,7 +32,6 @@ while True:
       server.ehlo()  # Can be omitted
       server.login(sender_email, password)
       server.sendmail(sender_email, receiver_email, message)
-
   if price <= 294 and i==0:
     print("buy  ",i)
     i=1
@@ -54,3 +45,9 @@ while True:
       server.ehlo()  # Can be omitted
       server.login(sender_email, password)
       server.sendmail(sender_email, receiver_email, message)
+def parsePrice():
+  r= requests.get('https://finance.yahoo.com/quote/BCH-USD/')
+  soup = BeautifulSoup(r.text,'lxml')
+  price=soup.find_all('div',{'class':'D(ib) Va(m) Maw(65%) Ov(h)'})[0].find('span').text
+  price=float(price)
+  return price
